@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CKEditor</title>
+    <script src="https://kit.fontawesome.com/4f6f8eb0bd.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+
+    <h2 class="text-center mt-5">Sending Mail Page For Admin</h2>
+    <input class="to" placeholder="Enter the recepient"/>
+    <div id="editor"></div>
+    <button class="send btn btn-outline-dark" onclick="demo()">send</button>
+    <h2 id="demo">message was sent</h2>
+    <script>
+    
+        
+    
+      ClassicEditor.create(document.querySelector("#editor"),{
+        cloudServices: {
+            tokenUrl: 'https://81591.cke-cs.com/token/dev/2867b3fdd53262d31a76372665ccb04a91872db07e0d691e2626ab11ac94',
+            uploadUrl: 'https://81591.cke-cs.com/easyimage/upload/'
+        }
+    } )
+        .then((editor) => {
+          console.log(editor);
+          document.querySelector(".ck-content p").innerHTML = "";
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      const demo = () => {
+        var a = document.querySelector(".ck-content").innerHTML;
+        // document.querySelector("#demo").innerHTML = a;
+        var to=document.querySelector('.to').value;
+        $('#demo').slideDown();
+            setInterval(()=>{$('#demo').slideUp();},2000);
+        console.log(to);
+        data={msg:a,to:to};
+        $.ajax({
+          url: "https://ancient-dusk-88387.herokuapp.com/admin/sendmail",
+          type: "post",
+          data: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json", //for object property name, use quoted notation shown in second
+          },
+          dataType: "json",
+          success: function (data) {
+           
+            console.log("message was sent");
+          },
+        });
+      };
+    </script>
+  </body>
+</html>
