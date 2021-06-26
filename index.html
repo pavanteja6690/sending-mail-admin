@@ -14,7 +14,7 @@
   <body>
 
     <h2 class="text-center mt-5">Sending Mail Page For Admin</h2>
-    <input class="to" placeholder="Enter the recepient"/>
+    <input class="to" type="email" placeholder="Enter the recepient"/>
     <div id="editor"></div>
     <button class="send btn btn-outline-dark" onclick="demo()">send</button>
     <h2 id="demo">message was sent</h2>
@@ -35,16 +35,17 @@
         .catch((error) => {
           console.error(error);
         });
-      const demo = () => {
+      const demo = async() => {
         var a = document.querySelector(".ck-content").innerHTML;
         // document.querySelector("#demo").innerHTML = a;
         var to=document.querySelector('.to').value;
+        data={msg:a,to:to};
         $('#demo').slideDown();
             setInterval(()=>{$('#demo').slideUp();},2000);
-        console.log(to);
-        data={msg:a,to:to};
-        $.ajax({
-          url: "https://ancient-dusk-88387.herokuapp.com/admin/sendmail",
+        // console.log(to);
+        // console.log(data);
+        await $.ajax({
+          url: "https://nodemailerbackendstopstalk.herokuapp.com/admin/sendmail",
           type: "post",
           data: JSON.stringify(data),
           headers: {
@@ -52,7 +53,6 @@
           },
           dataType: "json",
           success: function (data) {
-           
             console.log("message was sent");
           },
         });
