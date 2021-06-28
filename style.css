@@ -1,4 +1,6 @@
 body {
+  width: 100vw !important;
+  overflow-x: hidden;
   background: rgb(179, 219, 243);
 }
 .ck-editor {
@@ -21,6 +23,7 @@ body {
   margin-left: 50%;
   transform: translateX(-50%);
   margin-top: 10px;
+  margin-bottom: 40px;
 }
 #demo {
   position: fixed;
@@ -29,4 +32,44 @@ body {
   display: none;
   background: lightskyblue;
   padding: 10px;
+}
+.codeeditor {
+  width: 800px !important;
+  min-height: 300px !important;
+  display: none;
+  margin: auto !important;
+  margin-left: 50vw !important;
+  transform: translateX(-50%);
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+}
+.switchbackbtn,
+.getpreviousbtn {
+  outline: none;
+  border: 1px solid black;
+  margin: auto;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+.switchbackbtn:hover,
+.getpreviousbtn:hover {
+  background: rgb(73, 73, 73);
+  color: white;
+}
+.htmlcodearea {
+  width: 800px;
+  height: 300px;
+}
+.previoustemplates {
+  width: 800px;
+  height: 40px;
+  margin-left: -80px;
+  display: none;
+}
+.pt {
+  padding-top: 20px;
+  margin-left: 50vw;
+  transform: translateX(-50%);
+  position: relative;
+  text-align: center;
 }

@@ -15,9 +15,22 @@
 
     <h2 class="text-center mt-5">Sending Mail Page For Admin</h2>
     <input class="to" type="email" placeholder="Enter the recepient"/>
+    <div class="pt">
+    <button class="getpreviousbtn" onclick="getprevious()">Get previous templates</button>
+    <select onchange="demo2(this)" class="previoustemplates">
+      <option disabled selected>Select the template</option>
+    </select>
+    </div>
+    <div class="editorwrapper">
     <div id="editor"></div>
+    </div>
+    <div class="codeeditor">
+    <button class="switchbackbtn" onclick="codetoggle()">Switch back to normal editor</button>
+    <textarea class="htmlcodearea" placeholder="Type your HTML code here"></textarea>
+    </div>
     <button class="send btn btn-outline-dark" onclick="demo()">send</button>
     <h2 id="demo">message was sent</h2>
+    
     <script>
     
         
@@ -31,32 +44,13 @@
         .then((editor) => {
           console.log(editor);
           document.querySelector(".ck-content p").innerHTML = "";
+          $(".ck-toolbar__items").append("<button class='code' onClick='codetoggle()'>Code</button>");
         })
         .catch((error) => {
           console.error(error);
         });
-      const demo = async() => {
-        var a = document.querySelector(".ck-content").innerHTML;
-        // document.querySelector("#demo").innerHTML = a;
-        var to=document.querySelector('.to').value;
-        data={msg:a,to:to};
-        $('#demo').slideDown();
-            setInterval(()=>{$('#demo').slideUp();},2000);
-        // console.log(to);
-        // console.log(data);
-        await $.ajax({
-          url: "https://nodemailerbackendstopstalk.herokuapp.com/admin/sendmail",
-          type: "post",
-          data: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json", //for object property name, use quoted notation shown in second
-          },
-          dataType: "json",
-          success: function (data) {
-            console.log("message was sent");
-          },
-        });
-      };
+      
     </script>
+    <script src="index.js"></script>
   </body>
 </html>
