@@ -1,3 +1,7 @@
+var editor;
+const seteditor = (e) => {
+  editor = e;
+};
 var previoustemplates = [];
 const getprevious = async () => {
   $(".getpreviousbtn").hide();
@@ -23,10 +27,11 @@ const getprevious = async () => {
 demo2 = (tm) => {
   console.log(tm);
   console.log(tm.value);
-  if (flag == 0) {
-    codetoggle();
-  }
+  // if (flag == 0) {
+  //   codetoggle();
+  // }
   document.querySelector(".htmlcodearea").value = previoustemplates[tm.value];
+  editor.data.set(previoustemplates[tm.value]);
 };
 var flag = 0;
 codetoggle = () => {

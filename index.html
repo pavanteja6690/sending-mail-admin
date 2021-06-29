@@ -43,7 +43,7 @@
     } )
         .then((editor) => {
           console.log(editor);
-          document.querySelector(".ck-content p").innerHTML = "";
+          seteditor(editor);
           $(".ck-toolbar__items").append("<button class='code' onClick='codetoggle()'>Code</button>");
         })
         .catch((error) => {
